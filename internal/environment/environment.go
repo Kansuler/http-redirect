@@ -21,6 +21,7 @@ type Variables struct {
 	HTTPStatus int    `json:"http_status"`
 }
 
+// Load picks up all environment variables and check if they pass the rules
 func Load() (v Variables, errs []error) {
 	var err error
 
