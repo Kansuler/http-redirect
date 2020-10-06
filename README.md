@@ -6,7 +6,7 @@ A small container package that are configurable through environment variables to
 
 Docker hub image: [kansuler/http-redirect](https://hub.docker.com/r/kansuler/http-redirect)
 
-API and detailed documentation can be found at <https://godoc.org/github.com/Kansuler/http-request>
+API and detailed documentation can be found at <https://godoc.org/github.com/Kansuler/http-redirect>
 
 | environment variable | description                                                                                                                 |
 | -------------------- | --------------------------------------------------------------------------------------------------------------------------- |
