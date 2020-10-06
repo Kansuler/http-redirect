@@ -3,7 +3,9 @@ steps:
     args:
       - build
       - --tag=gcr.io/${PROJECT_ID}/${REPO_NAME}:${SHORT_SHA}
+      - --tag=gcr.io/${PROJECT_ID}/${REPO_NAME}:latest
       - --tag=${_DOCKER_USER}/${REPO_NAME}:${SHORT_SHA}
+      - --tag=${_DOCKER_USER}/${REPO_NAME}:latest
       - --file=Dockerfile
       - .
   - name: gcr.io/cloud-builders/docker
