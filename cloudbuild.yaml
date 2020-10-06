@@ -1,0 +1,26 @@
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - --tag=gcr.io/${PROJECT_ID}/${REPO_NAME}:${SHORT_SHA}
+      - --tag=${_DOCKER_USER}/${REPO_NAME}:${SHORT_SHA}
+      - --file=Dockerfile
+      - .
+  - name: gcr.io/cloud-builders/docker
+    entrypoint: bash
+    args:
+      - -c
+      - docker
+      - login
+      - --username=${_DOCKER_USER}
+      - --password=$$PASSWORD
+    secretEnv:
+      - PASSWORD
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - ${_DOCKER_USER}/${REPO_NAME}:${SHORT_SHA}
+secrets:
+  - kmsKeyName: projects/kansuler/locations/global/keyRings/docker/cryptoKeys/password
+    secretEnv:
+      PASSWORD: CiQAU9YKuyiBNUAgjj01l3g554VnCkAjTaDs9VyFNXquErewAS4STAAAOnXoWKDxhLyoRpvsSBheHguBPakODNS5s4IiDRNAzNsF23Mf1XnCPViRgvIu0cWQreRRVYfeuB323+h/emtpOiKog9s1QaCxP+8=
