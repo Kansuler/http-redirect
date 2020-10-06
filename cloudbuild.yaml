@@ -21,3 +21,6 @@ secrets:
   - kmsKeyName: projects/kansuler/locations/global/keyRings/docker/cryptoKeys/password
     secretEnv:
       PASSWORD: CiQAU9YKuyiBNUAgjj01l3g554VnCkAjTaDs9VyFNXquErewAS4STAAAOnXoWKDxhLyoRpvsSBheHguBPakODNS5s4IiDRNAzNsF23Mf1XnCPViRgvIu0cWQreRRVYfeuB323+h/emtpOiKog9s1QaCxP+8=
+images:
+  - gcr.io/${PROJECT_ID}/${REPO_NAME}:${SHORT_SHA}
+  - gcr.io/${PROJECT_ID}/${REPO_NAME}:latest
