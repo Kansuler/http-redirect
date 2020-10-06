@@ -8,6 +8,7 @@ import (
 	"time"
 )
 
+// Stackdriver configure zerolog on a global level
 func Stackdriver() {
 	zerolog.LevelFieldMarshalFunc = func(l zerolog.Level) string {
 		if l == zerolog.FatalLevel {

@@ -10,10 +10,7 @@ steps:
     entrypoint: bash
     args:
       - -c
-      - docker
-      - login
-      - --username=${_DOCKER_USER}
-      - --password=$$PASSWORD
+      - "docker login --username=${_DOCKER_USER} --password=$$PASSWORD"
     secretEnv:
       - PASSWORD
   - name: gcr.io/cloud-builders/docker

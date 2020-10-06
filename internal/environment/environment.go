@@ -7,14 +7,18 @@ import (
 	"strconv"
 )
 
+// ErrNoTargetHost occurs when no environment variable was provided
 var ErrNoTargetHost = errors.New("target_host environment variable needs to be defined")
-var ErrUnrecognizableAppendUri = errors.New("append_uri was not set or had invalid format")
 
+// ErrUnrecognizableAppendURI occurs when the append_uri environment variable couldn't be parsed into a bool
+var ErrUnrecognizableAppendURI = errors.New("append_uri was not set or had invalid format")
+
+// Variables hold all the configuration data
 type Variables struct {
 	TargetHost string `json:"target_host"`
-	AppendUri  bool   `json:"append_uri"`
+	AppendURI  bool   `json:"append_uri"`
 	LogFormat  string `json:"log_format"`
-	HttpStatus int    `json:"http_status"`
+	HTTPStatus int    `json:"http_status"`
 }
 
 func Load() (v Variables, errs []error) {
@@ -26,14 +30,14 @@ func Load() (v Variables, errs []error) {
 		errs = append(errs, ErrNoTargetHost)
 	}
 
-	v.AppendUri, err = strconv.ParseBool(os.Getenv("append_uri"))
+	v.AppendURI, err = strconv.ParseBool(os.Getenv("append_uri"))
 	if err != nil {
-		errs = append(errs, ErrUnrecognizableAppendUri)
+		errs = append(errs, ErrUnrecognizableAppendURI)
 	}
 
-	v.HttpStatus, err = strconv.Atoi(os.Getenv("http_status"))
+	v.HTTPStatus, err = strconv.Atoi(os.Getenv("http_status"))
 	if err != nil {
-		v.HttpStatus = http.StatusTemporaryRedirect
+		v.HTTPStatus = http.StatusTemporaryRedirect
 	}
 
 	v.LogFormat = os.Getenv("log_format")
